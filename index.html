@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>ティアラメンツ効果使用確認ツール</title>
+        <style>
+            .つかった{
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <template id="ぼたん">
+            <button onclick="this.classList.toggle('つかった');"></button>
+        </template>
+        <p>ターン終了時はリロードしてね。</p>
+        <div id="わし">
+            <p>わし</p>
+        </div>
+        <div id="てき">
+            <p>てき</p>
+        </div>
+
+        <script>
+            const かくにんしたいやつ = [
+                ["メイルゥ", ["ns/ss場合,3枚落とす", "融合"]], 
+                ["ハゥフニス", ["相手フィールドモンスター効果発動時,ss&3枚落とす", "融合"]], 
+                ["シェイレーン", ["ss&手札モンスター1捨て&3枚落とす", "融合"]], 
+                ["レイノハート", ["ns/ss場合,ティアラモンスター1墓地送り", "ss&手札ティアラ1捨て"]], 
+            ];
+            const てんぷれ = document.getElementById("ぼたん");
+            /*わしのぶん*/
+            for(let i = 0; i < かくにんしたいやつ.length; i++){
+                for(let j = 0; j < かくにんしたいやつ[i][1].length; j++){
+                    let くろーん = てんぷれ.content.firstElementChild.cloneNode(true);
+                    let こうかばんごう = j+1;
+                    くろーん.textContent = かくにんしたいやつ[i][0] + こうかばんごう;
+                    くろーん.title = かくにんしたいやつ[i][1][j];   //説明ぽいやつ。いらないならけして。
+                    document.getElementById("わし").appendChild(くろーん);
+                }
+            }
+            /*てきのぶん*/
+            for(let i = 0; i < かくにんしたいやつ.length; i++){
+                for(let j = 0; j < かくにんしたいやつ[i][1].length; j++){
+                    let くろーん = てんぷれ.content.firstElementChild.cloneNode(true);
+                    let こうかばんごう = j+1;
+                    くろーん.textContent = かくにんしたいやつ[i][0] + こうかばんごう;
+                    くろーん.title = かくにんしたいやつ[i][1][j];   //説明ぽいやつ。いらないならけして。
+                    document.getElementById("てき").appendChild(くろーん);
+                }
+            }
+        </script>
+    </body>
+</html>
